@@ -6,7 +6,7 @@ import Link from 'next/link';
 const MovieList = ({MovieCategory="now_playing"}) => {
     const [movies, setMovies] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(0);
+    const [totalPages, setTotalPages] = useState(100);
 
     useEffect(() => {
         fetch(`https://api.themoviedb.org/3/movie/${MovieCategory}?language=en-US&page=${currentPage}`, options)
