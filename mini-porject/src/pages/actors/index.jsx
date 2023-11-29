@@ -22,7 +22,7 @@ const ActorsList = () => {
       };
     
     return (
-        <>
+      <div className="container mx-auto w-3/4">
       <ul className="flex flex-wrap justify-center">
         {actors.map((actor) => (
           <li key={actor.id} className="w-1/4 p-4">
@@ -43,7 +43,7 @@ const ActorsList = () => {
       </ul>
       <Pagination totalPages={totalPages} currentPage={currentPage} onPageChange={handlePageChange}/>
       
-      </>
+      </div>
     );
   };
   
