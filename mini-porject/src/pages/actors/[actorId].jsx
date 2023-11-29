@@ -1,12 +1,11 @@
 import React, {useState, useEffect} from 'react'
-import {options} from "@/ApiInfo"
+import {options,ImageUrl} from "@/ApiInfo"
 import {useRouter} from 'next/router';
 
 function ActorInfo() {
  const router = useRouter();
- //const id  = router.query.actorId;
- const id = 556356;
- const imgURL = "https://image.tmdb.org/t/p/original/";
+ const id  = router.query.actorId;
+ //const id = 556356;
  const [actor, setActor] = useState({});
  const [credits, setCredits] = useState({});
  const [allActors, setAllActors] = useState({});
@@ -24,7 +23,7 @@ function ActorInfo() {
           setActor(response)})
         .catch(err => console.error(err));
     //actor movies
-    fetch('https://api.themoviedb.org/3/person/556356/movie_credits?language=en-US', options)
+    fetch(`https://api.themoviedb.org/3/person/${id}/movie_credits?language=en-US`, options)
           .then(response => response.json())
           .then(response => setCredits(response))
           .catch(err => console.error(err));
@@ -35,7 +34,7 @@ function ActorInfo() {
           .catch(err => console.error(err));
  }, [])
 
- const actorPic = (!!actor.profile_path)?`${imgURL}${actor.profile_path}`: null;
+ const actorPic = (!!actor.profile_path)?`${ImageUrl}${actor.profile_path}`: null;
  const actorName = actor.name;
  const actorGender = (actor.gender === 1)? "Female": "Male";
  //calculate avg popularity
@@ -55,7 +54,7 @@ function ActorInfo() {
     }, []): null;
  const moviesIn = (topMovies)? topMovies.map((movie) => (
     <div key={movie.id}>
-      <img src={`${imgURL}${movie.poster_path}`} alt={movie.title} width={"100px"} />
+      <img src={`${ImageUrl}${movie.poster_path}`} alt={movie.title} width={"100px"} />
       <div>{movie.title}</div>
     </div>
   )): null;

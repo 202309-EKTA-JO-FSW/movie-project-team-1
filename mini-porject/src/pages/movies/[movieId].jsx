@@ -1,14 +1,14 @@
-
 import React, {useState, useEffect} from "react";
 import { options ,ImageUrl} from '@/ApiInfo';
 import { useRouter } from 'next/router'
+import Link from 'next/link';
 
 
 function movieInfo(){
      const router = useRouter()
-     //const id = router.query.movieId;
-     const id = 901362;
-     const imgUrl = "https://image.tmdb.org/t/p/original/";
+     const id = router.query.movieId;
+     console.log(id);
+     //const id = 901362;
      const [movie, setMovie] = useState({});
      const [cast, setCast] = useState({});
      const [similar, setSimilar] = useState({});
@@ -40,7 +40,7 @@ function movieInfo(){
       
     
       
-      const poster =(!!movie.poster_path)? `${imgUrl}${movie.poster_path}`:null;
+      const poster =(!!movie.poster_path)? `${ImageUrl}${movie.poster_path}`:null;
       const name = movie.original_title;
       const release = movie.release_date;
       const movieYear = (release)? release.substring(0, 4): null;
@@ -50,10 +50,13 @@ function movieInfo(){
       const votes = movie.vote_count;
       const director = (!!cast.crew)? cast.crew.filter((dir) => dir.job === "Director"): null;
       const overview = movie.overview;
-      const trailer = (!!video.results)? video.results.filter((trailer) => trailer.name === "Official Trailer"): null;
-      const offTrailer = trailer? trailer[0].key: null;
-      const companyName = (!!movie.production_companies)? movie.production_companies[0].name: null;
-      const companyImg = (!!movie.production_companies)? movie.production_companies[0].logo_path: null;
+      let trailer = (!!video.results)? video.results.filter((trailer) => trailer.name === "Official Trailer"): null;
+      if(trailer == null){
+        trailer = (!!video.results)? video.results.filter((trailer) => trailer.official === true): null;
+      }
+      const offTrailer = trailer !=null ? trailer[0]!=null ? trailer[0].key: null: null;
+      const companyName = (!!movie.production_companies) && movie.production_companies.length>0? movie.production_companies[0].name: null;
+      const companyImg = (!!movie.production_companies) && movie.production_companies.length>0 ? movie.production_companies[0].logo_path: null;
       
       const listDir = director? director.map((dir) => (
         <div key={dir.id}>
@@ -65,14 +68,14 @@ function movieInfo(){
 
       const listCast = actingCast? actingCast.map( actor => (
         <div key={actor.id}>
-          <img src={`${imgUrl}${actor.profile_path}`} alt={actor.name} width={"100px"}/>
+          <img src={`${ImageUrl}${actor.profile_path}`} alt={actor.name} width={"100px"}/>
           <p>{actor.name}</p>
         </div>
       )): null;
 
       const similarMovies = (!!similar.results)? similar.results.map(movie => (
         <div key={movie.id}>
-            {(!!movie.poster_path) && <img src={`${imgUrl}${movie.poster_path}`} alt={movie.title} width={"100px"}/>}
+            {(!!movie.poster_path) &&  <Link href={`/movies/${movie.id}`}><img src={`${ImageUrl}${movie.poster_path}`} alt={movie.title} width={"100px"}/></Link>}
             <p>{movie.title}</p>
         </div>
       )): null;
@@ -97,11 +100,12 @@ function movieInfo(){
             {listCast}
             <h3>Recommendations</h3>
             {similarMovies} 
-            <iframe width="420" height="315"
+            {offTrailer &&   <iframe width="420" height="315"
               src={`https://www.youtube.com/embed/${offTrailer}`} >
-            </iframe>
+            </iframe>}
+          
             <div>
-              {(!!companyImg) && <img src={`${imgUrl}${companyImg}`} alt={companyName} width={"200px"}/>}
+              {(!!companyImg) && <img src={`${ImageUrl}${companyImg}`} alt={companyName} width={"200px"}/>}
               <h3><b>{companyName}</b></h3>
             </div>
         </>

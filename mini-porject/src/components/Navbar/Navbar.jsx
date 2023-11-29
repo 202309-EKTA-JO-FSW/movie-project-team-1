@@ -22,13 +22,11 @@ function Navbar()  {
         }
     ];
     const[genres,SetGenres]=useState([]);
-  
     //const genres = ['Action', 'Adventure', 'Animation', 'Comedy', 'Crime', 'Documentary', 'Drama', 'Family', 'Fantasy', 'History', 'Horror', 'Music', 'Mystery', 'Romance', 'Science Fiction', 'TV Movie', 'Thriller', 'War', 'Western'];
     useEffect(() => {
         fetch(`https://api.themoviedb.org/3/genre/movie/list?language=en`, options)
         .then(response => response.json())
         .then((response) => {
-            console.log(response);
             SetGenres(response.genres);  
         })
         .catch(err => console.error(err));

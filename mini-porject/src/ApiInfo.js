@@ -8,4 +8,4 @@ export const options = {
     }
   };
 
-  export const ImageUrl ="https://image.tmdb.org/t/p/w185/";
+  export const ImageUrl ="https://image.tmdb.org/t/p/original/";
