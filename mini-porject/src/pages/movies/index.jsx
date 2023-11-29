@@ -2,21 +2,41 @@ import React, { useState, useEffect } from 'react';
 import { options ,ImageUrl} from '@/ApiInfo';
 import Pagination from '../../components/Pagination/Pagination'
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
-const MovieList = ({MovieCategory="now_playing"}) => {
+const MovieList = () => {
     const [movies, setMovies] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(100);
+    
+    const router = useRouter();
+    const movieCategory = router.query.MovieCategory == undefined ? "popular": router.query.MovieCategory ;
+    const genreID = router.query.GenreID== undefined ? 0:router.query.GenreID;
 
-    useEffect(() => {
-        fetch(`https://api.themoviedb.org/3/movie/${MovieCategory}?language=en-US&page=${currentPage}`, options)
+    if(genreID >0 ){
+      useEffect(() => {
+        fetch(`https://api.themoviedb.org/3/discover/movie?language=en-US&page=${currentPage}&with_genres=${genreID}`, options)
         .then(response => response.json())
         .then((response) => {
-            setMovies(response.results);  
-            setTotalPages(response.total_pages);
+          setMovies(response.results);  
+          setTotalPages(response.total_pages);
         })
         .catch(err => console.error(err));
     }, [currentPage]);
+    }
+    else{
+      useEffect(() => {
+        fetch(`https://api.themoviedb.org/3/movie/${movieCategory}?language=en-US&page=${currentPage}`, options)
+        .then(response => response.json())
+        .then((response) => {
+          setMovies(response.results);  
+          setTotalPages(response.total_pages);
+        })
+        .catch(err => console.error(err));
+    }, [currentPage]);
+
+    }
+   
 
     const handlePageChange = (newPage) => {
         setCurrentPage(newPage);
