@@ -1,3 +1,4 @@
+
 import React, {useState, useEffect} from "react";
 import { options ,ImageUrl} from '@/ApiInfo';
 import { useRouter } from 'next/router'
@@ -108,3 +109,4 @@ function movieInfo(){
 }
 
 export default movieInfo;
+
