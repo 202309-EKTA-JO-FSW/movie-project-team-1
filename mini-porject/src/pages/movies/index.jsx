@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { options ,ImageUrl} from '@/ApiInfo';
+import React from 'react';
+import { ImageUrl} from '@/ApiInfo';
 import Pagination from '../../components/Pagination/Pagination'
 import Link from 'next/link';
 import { useRouter } from 'next/router';
