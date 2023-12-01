@@ -1,6 +1,7 @@
 import React, { useState,useEffect } from 'react';
 import Link from 'next/link';
 import { options } from '../../ApiInfo';
+import SearchBar from './Searchbar';
 
 function Navbar()  {
     const movieCategory = [
@@ -54,6 +55,7 @@ function Navbar()  {
                 </div>
             </div>
             <Link href='/actors'>Actors</Link>
+            <SearchBar />
         </nav>
     )
 };
