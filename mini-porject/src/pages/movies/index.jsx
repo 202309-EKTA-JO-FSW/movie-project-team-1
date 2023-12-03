@@ -55,14 +55,6 @@ import { useRouter } from 'next/router';
       apiUrl = `https://api.themoviedb.org/3/movie/${movieCategory}?language=en-US&page=${currentPage}`;
     }
   
-    const options = {
-      method: 'GET',
-      headers: {
-        accept: 'application/json',
-        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjNWU5ZDllMGU1NmZiNWU3NThlNDdmYWZkOTdiNmM2ZiIsInN1YiI6IjY1NjYwMmUzNmMwYjM2MDBlNGRiYzQ2NyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.YX6hYgkuzF5tWmexeSHHIGsTAZKgkenbn620fCiH-VI'
-      }
-    };
-  
     const response = await fetch(apiUrl, options);
     const data = await response.json();
   

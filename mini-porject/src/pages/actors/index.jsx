@@ -41,11 +41,17 @@ const ActorsList = ({actors, totalPages, currentPage}) => {
   
   export async function getServerSideProps({query}){
     let currentPage = query.page || 1;
-    const actorsResponse = await fetch(`https://api.themoviedb.org/3/person/popular?language=en-US&page=${currentPage}`, options)
+
+    const actorsResponse = await fetch(
+      `https://api.themoviedb.org/3/person/popular?language=en-US&page=${currentPage}`,
+       options
+      );
     const data = await actorsResponse.json();
+
     const totalPages = data.total_pages;
     const actors = data.results;
     currentPage = parseInt(currentPage, 10);
+    
     return {
       props: {actors, totalPages, currentPage},
     }
