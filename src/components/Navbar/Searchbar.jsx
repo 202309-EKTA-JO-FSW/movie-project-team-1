@@ -26,17 +26,23 @@ function SearchBar() {
         setActors([]);
     }
 
+    function handleClick() {
+        setSearchInput('');
+        setMovies([]);
+        setActors([]);
+    }
+
     return (
         <div>
             <input type='text' value={searchInput} onChange={handleSearchChange} />
             {movies.length !== 0 ? 
                 <div>
-                    {movies.map(movie => <Link key={movie.id} href={`/movies/${encodeURIComponent(movie.id)}`}>{movie.title}</Link>)}
+                    {movies.map(movie => <Link key={movie.id} href={`/movies/${encodeURIComponent(movie.id)}`} onClick={handleClick}>{movie.title}</Link>)}
                 </div>
             : null} 
             {actors.length !== 0 ? 
                 <div>
-                    {actors.map(actor => <Link key={actor.id} href={`/actors/${encodeURIComponent(actor.id)}`}>{actor.name}</Link>)}
+                    {actors.map(actor => <Link key={actor.id} href={`/actors/${encodeURIComponent(actor.id)}`} onClick={handleClick}>{actor.name}</Link>)}
                 </div>
             : null} 
         </div>
