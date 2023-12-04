@@ -21,11 +21,11 @@ import { useRouter } from 'next/router';
                   <img
                     src={`${ImageUrl}${movie.poster_path}`}
                     alt={movie.title}
-                    className="w-full h-auto object-cover"
+                    className="w-full max-h-80 object-cover"
                   />
                   <div className="mt-4">
-                    <h2 className="text-lg font-bold">{movie.title}</h2>
-                    <p className="text-gray-500">{movie.overview}</p>
+                    <h2 className="text-lg font-bold">{movie.title.length>36 ? movie.title.slice(0, 36): movie.title}</h2>
+                    <p className="text-gray-500">{movie.overview.length > 100 ? movie.overview.slice(0, 100)+'...': movie.overview}</p>
                   </div>
                 </div>
               </Link>
