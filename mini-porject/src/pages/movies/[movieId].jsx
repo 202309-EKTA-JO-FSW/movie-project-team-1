@@ -1,6 +1,4 @@
-import React, {useState, useEffect} from "react";
 import { options ,ImageUrl} from '@/ApiInfo';
-import { useRouter } from 'next/router'
 import Link from 'next/link';
 
 
@@ -13,44 +11,52 @@ function movieInfo({ movie, cast, similar, video }) {
          vote_count: votes
         } = movie;
 
-  const poster = `${ImageUrl}${poster_path}`;
-  const language = movie.spoken_languages[0].english_name;
-  const movieYear = release ? release.substring(0, 4) : null;
-  const rating = Math.ceil(vote_average * 10);
-  const director = (!!cast.crew)? cast.crew.filter((dir) => dir.job === "Director"): null;
-  const overview = movie.overview;
-  let trailer = (!!video.results)? video.results.filter((trailer) => trailer.name === "Official Trailer"): null;
-      if(trailer == null){
-        trailer = (!!video.results)? video.results.filter((trailer) => trailer.official === true): null;
+    const poster = `${ImageUrl}${poster_path}`;
+    const language = movie.spoken_languages;
+    const movieYear = release ? release.substring(0, 4) : null;
+    const rating = Math.ceil(vote_average * 10);
+    const director = cast.crew.filter((dir) => dir.job === "Director");
+    const overview = movie.overview;
+    const trailer = video.results.filter((trailer) => trailer.type === "Trailer");
+    const hours = Math.floor(runTime/60);
+    const minutes = runTime % 60;
+    const offTrailer = trailer !==null ? trailer[0].key: null;
+    const companyName =  movie.production_companies.length>0? movie.production_companies[0].name: null;
+    const companyImg =  movie.production_companies.length>0 ? movie.production_companies[0].logo_path: null;
+
+    const allLanguages = language.map((lang) => (
+        <div key={lang.english_name}>{lang.english_name}</div>
+      ))
+    
+    
+    const listDir = director? director.map((dir) => (
+      <div key={dir.id}>
+          <p>{dir.name}</p>
+      </div>
+    )): null;
+
+    const actingCast = cast.cast.filter((cast) => cast.known_for_department === "Acting" && cast.order < 5);
+
+    const listCast = actingCast? actingCast.map( actor => (
+      <div key={actor.id}>
+        <Link href={`../actors/${actor.id}`} ><img src={`${ImageUrl}${actor.profile_path}`} alt={actor.name} width={"100px"}/></Link>
+        <p><b>{actor.name}</b> as {actor.character}</p>
+      </div>
+    )): null
+
+    const topMovies = similar.results.reduce((result, movie) => {
+      if(result.length < 7 && movie.vote_average > 7){
+        result.push(movie);
       }
-  const offTrailer = trailer !=null ? trailer[0]!=null ? trailer[0].key: null: null;
-  const companyName = (!!movie.production_companies) && movie.production_companies.length>0? movie.production_companies[0].name: null;
-  const companyImg = (!!movie.production_companies) && movie.production_companies.length>0 ? movie.production_companies[0].logo_path: null;
-  
-  const listDir = director? director.map((dir) => (
-    <div key={dir.id}>
-        <p>{dir.name}</p>
-    </div>
-  )): null
-  const actingCast = (!!cast.cast)?cast.cast.filter((cast) => cast.known_for_department === "Acting" && cast.order < 5): null;
-  const listCast = actingCast? actingCast.map( actor => (
-    <div key={actor.id}>
-      <Link href={`../actors/${actor.id}`} ><img src={`${ImageUrl}${actor.profile_path}`} alt={actor.name} width={"100px"}/></Link>
-      <p>{actor.name}</p>
-    </div>
-  )): null
-  const topMovies = (!!similar.results)? similar.results.reduce((result, movie) => {
-    if(result.length < 7 && movie.vote_average > 7){
-      result.push(movie);
-    }
-    return result;
-  }, []): null;
-  const similarMovies = (topMovies)? topMovies.map((movie) => (
-    <div key={movie.id}>
-        {(!!movie.poster_path) &&  <Link href={`/movies/${movie.id}`}><img src={`${ImageUrl}${movie.poster_path}`} alt={movie.title} width={"100px"}/></Link>}
-        <p>{movie.title}</p>
-    </div>
-  )): null;
+      return result;
+    }, []);
+    
+    const similarMovies = (topMovies)? topMovies.map((movie) => (
+      <div key={movie.id}>
+          {(!!movie.poster_path) &&  <Link href={`/movies/${movie.id}`}><img src={`${ImageUrl}${movie.poster_path}`} alt={movie.title} width={"100px"}/></Link>}
+          <p>{movie.title}</p>
+      </div>
+    )): null;
 
     return (
         <>
@@ -58,10 +64,12 @@ function movieInfo({ movie, cast, similar, video }) {
             <img src={poster} alt="movie poster" width="200px"/>
             <h2>{name} ({movieYear}) </h2>
             <p><b>Release Date:</b> {release}</p>
-            <p><b>Duration:</b> {runTime} Minutes</p>
-            <p><b>Language:</b> {language}</p>
-            <p><b>Rating:</b> {rating}%</p>
-            <p><b>Votes:</b> {votes}</p>
+            <p><b>Duration:</b> {hours}h{minutes}m</p>
+            <div>
+              <b>Language(s):</b>
+              {allLanguages}
+            </div> 
+            <p><b>Rating:</b> {rating}% ({votes} Rating{votes !== 1? "s":null})</p>
             <p><b>Director(s):</b></p>
             {listDir}
             <div>
@@ -72,10 +80,9 @@ function movieInfo({ movie, cast, similar, video }) {
             {listCast}
             <h3>Recommendations</h3>
             {similarMovies} 
-            {offTrailer &&   <iframe width="420" height="315"
+            {offTrailer && <iframe width="420" height="315"
               src={`https://www.youtube.com/embed/${offTrailer}`} >
             </iframe>}
-          
             <div>
               {(!!companyImg) && <img src={`${ImageUrl}${companyImg}`} alt={companyName} width={"200px"}/>}
               <h3><b>{companyName}</b></h3>
