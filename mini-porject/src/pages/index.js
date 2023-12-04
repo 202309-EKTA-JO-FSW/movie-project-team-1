@@ -29,10 +29,6 @@ export default function Home({movies, currentPage, totalPages}) {
             </li>
           ))}
         </ul>
-        <Pagination
-          totalPages={totalPages}
-          currentPage={currentPage}
-        />
     </>
   )
 }
