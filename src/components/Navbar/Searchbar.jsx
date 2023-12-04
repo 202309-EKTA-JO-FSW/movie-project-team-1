@@ -27,7 +27,7 @@ function SearchBar() {
     }
 
     return (
-        <div>
+        <div className = 'm-3'>
             <input type='text' value={searchInput} onChange={handleSearchChange} />
             {movies.length !== 0 ? 
                 <div>

@@ -6,24 +6,24 @@ import SearchBar from './Searchbar';
 function Navbar()  {
     const movieCategory = [
         {
-            catrogeValue :'top_rated',
+            categoryvalue :'top_rated',
            navbarValue:'Top Rate'
         },
         {
-            catrogeValue :'popular',
+            categoryvalue :'popular',
             navbarValue:'Popular'
         },
         {
-            catrogeValue :'now_playing',
+            categoryvalue :'now_playing',
             navbarValue:'Now Playing'
         },
         {
-            catrogeValue :'upcoming',
+            categoryvalue :'upcoming',
             navbarValue:'Upcoming'
         }
     ];
     const[genres,SetGenres]=useState([]);
-    //const genres = ['Action', 'Adventure', 'Animation', 'Comedy', 'Crime', 'Documentary', 'Drama', 'Family', 'Fantasy', 'History', 'Horror', 'Music', 'Mystery', 'Romance', 'Science Fiction', 'TV Movie', 'Thriller', 'War', 'Western'];
+    
     useEffect(() => {
         fetch(`https://api.themoviedb.org/3/genre/movie/list?language=en`, options)
         .then(response => response.json())
@@ -40,8 +40,8 @@ function Navbar()  {
                 <div className='dropdown-content'>
                     {movieCategory.map((item,index) => <Link  href={{
             pathname: '/movies',
-            query: { MovieCategory: `${item.catrogeValue}` },
-          }}  key={item.catrogeValue+index}>{item.navbarValue}</Link>)}
+            query: { MovieCategory: `${item.categoryvalue}` },
+          }}  key={item.categoryvalue+index}>{item.navbarValue}</Link>)}
                 </div>
             </div>
             <div className='dropdown'>
