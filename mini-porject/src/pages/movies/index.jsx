@@ -1,5 +1,5 @@
 import React from 'react';
-import { ImageUrl} from '@/ApiInfo';
+import { ImageUrl, options } from '@/ApiInfo';
 import Pagination from '../../components/Pagination/Pagination'
 import Link from 'next/link';
 import { useRouter } from 'next/router';
