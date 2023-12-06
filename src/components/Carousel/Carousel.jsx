@@ -15,13 +15,13 @@ function NextJsCarousel({upcomingMovies}) {
                     src={`${ImageUrl}${movie.backdrop_path}`}
                     alt={movie.title} className="w-full"  style={{height:'500px'}}
                   />
-                   <p className="legend">{movie.title}</p> 
+                   <p className="text-yellow-600 legend">{movie.title}</p> 
                 
               </Link>
             </div>
           ))}
         
-             
+ 
           </Carousel> 
         </div> 
     ); 

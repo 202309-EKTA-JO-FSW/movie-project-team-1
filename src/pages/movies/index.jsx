@@ -12,20 +12,20 @@ import { useRouter } from 'next/router';
       router.push(`/movies?page=${newPage}`);
     };
     return (
-      <>
+      <div className='bg-gradient-to-r from-teal-950 to-yellow-600'>
         <ul className="flex flex-wrap justify-center">
           {movies.map((movie) => (
             <li key={movie.id} className="w-1/4 p-4">
               <Link href={`/movies/${movie.id}`}>
-                <div className="bg-white border rounded-lg shadow-md p-4">
+                <div className="min-h-[565px] bg-stone-200 border rounded-lg shadow-md mb-4 mt-6 mx-2 p-4 transition ease-in-out delay-80 hover:-translate-y-1 hover:scale-110 duration-300">
                   <img
                     src={`${ImageUrl}${movie.poster_path}`}
                     alt={movie.title}
-                    className="w-full max-h-80 object-cover"
+                    className=" w-full max-h-[500px] object-cover rounded-xl "
                   />
                   <div className="mt-4">
-                    <h2 className="text-lg font-bold">{movie.title.length>36 ? movie.title.slice(0, 36): movie.title}</h2>
-                    <p className="text-gray-500">{movie.overview.length > 100 ? movie.overview.slice(0, 100)+'...': movie.overview}</p>
+                    <h2 className="text-lg font-bold">{movie.title.length>36 ? movie.title.slice(0, 36): movie.title}({movie.release_date.substring(0,4)})</h2>
+                    {/* <p className="text-gray-500">{movie.overview.length > 100 ? movie.overview.slice(0, 100)+'...': movie.overview}</p> */}
                   </div>
                 </div>
               </Link>
@@ -37,7 +37,7 @@ import { useRouter } from 'next/router';
           currentPage={currentPage}
           onPageChange={handlePageChange}
         />
-      </>
+      </div>
     );
   };
 

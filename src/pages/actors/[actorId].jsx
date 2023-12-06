@@ -50,7 +50,7 @@ function ActorInfo({ actor, credits, allActors }) {
 
 //"bg-gradient-to-r from-cyan-500 to-red-500"
   return (
-    <div className='to-red-500 pb-10 bg-gradient-to-r from-yellow-600 to-teal-950 text-white'>
+    <div className='pb-10 bg-gradient-to-r from-yellow-600 to-teal-950 text-white'>
       <div className="flex flex-row justify-start">  
         <img src={actorPic} alt={actor.name} className='border-2 border-grey drop-shadow-xl ml-10 rounded-xl mt-7 h-ma  box-content w-[450px] h-[680px] ' />
         <div class='mt-10'>

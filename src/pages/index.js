@@ -3,15 +3,15 @@ import Link from 'next/link';
 import NextJsCarousel from '../components/Carousel/Carousel'
 export default function Home({nowPlayingMovies,popularMovies,topratedmoviesMovies,upcomingMovies}) {
   return (
-    <>    
+    <div className='bg-gradient-to-r from-teal-950 to-yellow-600'>    
 <NextJsCarousel upcomingMovies={upcomingMovies}/>
        
-<div class="bg-gray-100 justify-between py-4 px-6">
+<div class="bg-teal-900 justify-between py-3 px-6 mx-6 rounded-xl">
 <Link  href={{
             pathname: '/movies',
             query: { MovieCategory:'popular' },
           }}  key={'popular_list'}> 
-  <h2 className='text-lg font-bold text-center text-gray-800'>Popular Movies</h2></Link>
+  <h2 className='text-yellow-600 text-lg font-bold text-center hover:text-white'>Popular Movies</h2></Link>
   </div>
       <ul className="flex flex-wrap justify-center">
           {popularMovies.map((movie) => (
@@ -29,12 +29,12 @@ export default function Home({nowPlayingMovies,popularMovies,topratedmoviesMovie
           ))}
         </ul>
 
-        <div class="bg-gray-100 justify-between py-4 px-6">
+        <div class="bg-teal-900 justify-between py-3 px-6 mx-6 rounded-xl">
         <Link  href={{
             pathname: '/movies',
             query: { MovieCategory:'top_rated' },
           }}  key={'top_rated_list'}> 
-          <h2 className='text-lg font-bold text-center text-gray-800'>Top Rated Movies</h2>
+          <h2 className='text-yellow-600 text-lg font-bold text-center hover:text-white'>Top Rated Movies</h2>
           </Link>
   </div>
       <ul className="flex flex-wrap justify-center">
@@ -52,11 +52,11 @@ export default function Home({nowPlayingMovies,popularMovies,topratedmoviesMovie
             </li>
           ))}
         </ul>
-        <div class="bg-gray-100 justify-between py-4 px-6">
+        <div class="bg-teal-900 justify-between py-3 px-6 mx-6 rounded-xl">
         <Link  href={{
             pathname: '/movies',
             query: { MovieCategory:'now_playing' },
-          }}  key={'now_playing_list'}>  <h2 className='text-lg font-bold text-center text-gray-800'>Now Playing Movies</h2>
+          }}  key={'now_playing_list'}>  <h2 className='text-yellow-600 text-lg font-bold text-center hover:text-white'>Now Playing Movies</h2>
           </Link>
   </div>
       <ul className="flex flex-wrap justify-center">
@@ -76,7 +76,7 @@ export default function Home({nowPlayingMovies,popularMovies,topratedmoviesMovie
         </ul>
 
      
-    </>
+    </div>
   )
 }
 

@@ -35,33 +35,33 @@ function Navbar()  {
     }, []);
 
     return (
-        <nav className='overflow-hidden bg-slate-600 font-[Arial] h-20'>
+        <nav className='overflow-hidden bg-teal-950 font-[Arial] h-20'>
             <Link href='/' className='float-left text-white text-center p-4 hover:bg-slate-700'>
             <Image src='/Images/logo.svg' alt='FilmFusion Logo' width={300}
             height={36} className='float left p-2' />
             </Link>
             <div className='group float-left overflow-hidden'>
-                <div className='float-left text-white text-center text-xl p-4 hover:bg-slate-700 m-3 cursor-default'>Movies</div>
-                <div className='group-hover:block hidden absolute bg-gray-50 top-16 shadow-2xl w-36 z-20'>
+                <div className='float-left text-white text-center text-xl p-4 hover:bg-yellow-600 hover:rounded-lg m-3 cursor-default'>Movies</div>
+                <div className='group-hover:block hidden absolute bg-teal-900 text-white top-16 shadow-2xl w-36 z-20 rounded-lg'>
                     {movieCategory.map((item,index) => <Link  href={{
                         pathname: '/movies',
                         query: { MovieCategory: `${item.categoryvalue}` },
                     }}  
                     key={item.categoryvalue+index}
-                    className='block py-5 px-4 hover:bg-slate-200 text-center'>{item.navbarValue}</Link>)}
+                    className='block py-5 px-4 hover:bg-yellow-600 text-center rounded-lg'>{item.navbarValue}</Link>)}
                 </div>
             </div>
             <div className='group float-left overflow-hidden'>
-                <div className='float-left text-white text-center text-xl p-4 hover:bg-slate-700 m-3 cursor-default'>Genres</div>
-                <div className='group-hover:flex flex-col flex-wrap hidden absolute bg-gray-50 top-16 shadow-2xl h-4/6 w-auto z-20'>
+                <div className='float-left text-white text-center text-xl p-4 hover:bg-yellow-600 m-3 cursor-default hover:rounded-lg'>Genres</div>
+                <div className='group-hover:flex flex-col flex-wrap hidden absolute bg-teal-900 text-white top-16 shadow-2xl h-4/6 w-auto z-20 rounded-lg'>
                     {genres.map((genre) =>  <Link href={{
                         pathname: '/movies',
                         query: { GenreID: `${genre.id}` },
                     }}
-                    key={genre.id} className='block py-5 px-3 hover:bg-slate-200 text-center'>{genre.name}</Link>)}
+                    key={genre.id} className='block py-5 px-3 hover:bg-yellow-600 text-center rounded-lg'>{genre.name}</Link>)}
                 </div>
             </div>
-            <Link href='/actors' className='float-left text-white text-center text-xl p-4 hover:bg-slate-700 m-3'>Actors</Link>
+            <Link href='/actors' className='float-left text-white text-center text-xl p-4 hover:bg-yellow-600 m-3 hover:rounded-lg'>Actors</Link>
             <SearchBar />
         </nav>
     )
