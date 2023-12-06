@@ -8,7 +8,7 @@ export default function Home({nowPlayingMovies,popularMovies,topratedmoviesMovie
        
 <div class="bg-teal-900 justify-between py-3 px-6 mx-6 rounded-xl">
 <Link  href={{
-            pathname: '/movies',
+            pathname:  '/movies',
             query: { MovieCategory:'popular' },
           }}  key={'popular_list'}> 
   <h2 className='text-yellow-600 text-lg font-bold text-center hover:text-white'>Popular Movies</h2></Link>
