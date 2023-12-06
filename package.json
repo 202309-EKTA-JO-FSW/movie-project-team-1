@@ -17,7 +17,8 @@
     "react-circular-progressbar": "^2.1.0",
     "react-dom": "^18",
     "react-read-more-read-less": "^1.0.7",
-    "read-more-react": "^1.0.10"
+    "read-more-react": "^1.0.10",
+    "react-responsive-carousel": "^3.2.23"
   },
   "devDependencies": {
     "@commitlint/cli": "^18.4.3",
