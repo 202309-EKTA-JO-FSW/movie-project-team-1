@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react'
 import { options } from '../../ApiInfo';
 import Link from 'next/link';
 import { ImageUrl } from '../../ApiInfo';
+import { useRouter } from 'next/router'
 
 function SearchBar() {
     const [searchInput, setSearchInput] = useState('');
     const [movies, setMovies] = useState([]);
     const [actors, setActors] = useState([]);
+    const router = useRouter()
 
     useEffect(() => {
         if (searchInput !== '') {
@@ -20,6 +22,12 @@ function SearchBar() {
                 .catch(err => console.error(err));
         }
       }, [searchInput]);
+
+    useEffect(() => {
+        setSearchInput('');
+        setMovies([]);
+        setActors([]);
+    }, [router.asPath])
 
     function handleSearchChange(event) {
         setSearchInput(event.target.value);
