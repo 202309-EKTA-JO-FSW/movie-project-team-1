@@ -40,7 +40,7 @@ function SearchBar() {
                 <div className='absolute bg-slate-200 top-22  w-3/12 p-3 rounded-lg text-center z-20'>
                 {movies.length !== 0 ? 
                     <div>
-                    {movies.map(movie => <Link key={movie.id} href={`/movies/${encodeURIComponent(movie.id)}`} onClick={handleClick}>{movie.title}</Link>)}
+                        {movies.map(movie => <div key={movie.id} className='p-1 hover:bg-slate-100'><Link href={`/movies/${encodeURIComponent(movie.id)}`} className='flex gap-x-1 items-center' onClick={handleClick}><img src={`${ImageUrl}${movie.poster_path}`} width={60} height={60} />{movie.title}</Link></div>)}
                     </div>
                 : null} 
                 {actors.length !== 0 ? 
