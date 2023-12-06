@@ -42,7 +42,7 @@ function Navbar()  {
             </Link>
             <div className='group float-left overflow-hidden'>
                 <div className='float-left text-white text-center text-xl p-4 hover:bg-slate-700 m-3 cursor-default'>Movies</div>
-                <div className='group-hover:block hidden absolute bg-gray-50 top-16 shadow-2xl w-36'>
+                <div className='group-hover:block hidden absolute bg-gray-50 top-16 shadow-2xl w-36 z-20'>
                     {movieCategory.map((item,index) => <Link  href={{
                         pathname: '/movies',
                         query: { MovieCategory: `${item.categoryvalue}` },
@@ -53,7 +53,7 @@ function Navbar()  {
             </div>
             <div className='group float-left overflow-hidden'>
                 <div className='float-left text-white text-center text-xl p-4 hover:bg-slate-700 m-3 cursor-default'>Genres</div>
-                <div className='group-hover:flex flex-col flex-wrap hidden absolute bg-gray-50 top-16 shadow-2xl h-4/6 w-auto'>
+                <div className='group-hover:flex flex-col flex-wrap hidden absolute bg-gray-50 top-16 shadow-2xl h-4/6 w-auto z-20'>
                     {genres.map((genre) =>  <Link href={{
                         pathname: '/movies',
                         query: { GenreID: `${genre.id}` },

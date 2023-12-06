@@ -31,7 +31,7 @@ function SearchBar() {
         <div className = 'm-7 float-left'>
             <input type='text' value={searchInput} onChange={handleSearchChange} className='text-base' />
             {movies.length !== 0 || actors.length !== 0 ? 
-                <div className='absolute bg-slate-200 top-22  w-3/12 p-3 rounded-lg text-center'>
+                <div className='absolute bg-slate-200 top-22  w-3/12 p-3 rounded-lg text-center z-20'>
                 {movies.length !== 0 ? 
                     <div>
                         {movies.map(movie => <div key={movie.id} className='p-1 hover:bg-slate-100'><Link href={`/movies/${encodeURIComponent(movie.id)}`} className='flex gap-x-1 items-center'><img src={`${ImageUrl}${movie.poster_path}`} width={60} height={60} />{movie.title}</Link></div>)}
