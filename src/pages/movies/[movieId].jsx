@@ -87,10 +87,14 @@ function movieInfo({ movie, cast, similar, video}) {
     
     //bg-gradient-to-r from-cyan-500 to-red-500
     return (
-        <div className="">
-          <div className='flex  justify-start pb-10 bg-gradient-to-r from-teal-900 to-yellow-600'>
+        <div className="bg-gradient-to-r from-teal-950 to-yellow-600">
+          <div className='flex justify-start pb-10'>
             
-            <img src={poster} alt="movie poster" className=' border-2 border-grey drop-shadow-xl ml-10 rounded-xl mt-10 h-ma  box-content w-88 h-[510px] transition ease-in-out delay-80 hover:-translate-y-1 hover:scale-110 duration-300' />
+            <img
+                 src={poster}
+                 alt="movie poster"
+                 className=' border-2 border-grey drop-shadow-xl ml-10 rounded-xl mt-10 h-ma  box-content w-88 h-[510px] transition ease-in-out delay-80 hover:-translate-y-1 hover:scale-110 duration-300'
+            />
             
             <div className='mt-10'>
               <h2 className='text-white text-4xl font-bold ml-14'>{name} ({movieYear}) </h2>
@@ -99,21 +103,23 @@ function movieInfo({ movie, cast, similar, video}) {
               <p className='text-white text-2xl ml-14 mt-3'><b>Duration:</b> {hours !== 0? hours+"h": null}{minutes !== 0? minutes+"m": null}</p>
               <p className='text-white text-2xl text-2xl ml-14 mt-5'>
                 <b>Rating: </b>
-                <b><CircularProgressbar
-                  value={rating} 
-                  text={`${rating}%`} 
-                  background 
-                  backgroundPadding={6}
-                  className='inline cursor-default	 max-w-[60px] max-h-[60px] transition ease-in-out delay-80 hover:-translate-y-1 hover:scale-110 duration-300'
-                  styles={buildStyles({
-                    pathTransitionDuration: 0.5,
-                    textSize: '30px',
-                    trailColor: trailColor,
-                    pathColor: pathColor,                  
-                    backgroundColor: '#0f172a',
-                    textColor: 'white',
-                  })}
-                  /></b>
+                <b>
+                  <CircularProgressbar
+                    value={rating} 
+                    text={`${rating}%`} 
+                    background 
+                    backgroundPadding={6}
+                    className='inline cursor-default max-w-[60px] max-h-[60px] transition ease-in-out delay-80 hover:-translate-y-1 hover:scale-110 duration-300'
+                    styles={buildStyles({
+                      pathTransitionDuration: 0.5,
+                      textSize: '30px',
+                      trailColor: trailColor,
+                      pathColor: pathColor,                  
+                      backgroundColor: '#0f172a',
+                      textColor: 'white',
+                    })}
+                  />
+                </b>
                 &nbsp;
                 ({votes} Rating{votes !== 1? "s":null})
               </p>
@@ -132,7 +138,7 @@ function movieInfo({ movie, cast, similar, video}) {
             </div>
 
           </div>
-          <div className='bg-teal-950'>
+          <div>
             <h3 className='text-white text-3xl font-bold ml-10 mb-3'>Cast</h3>
             <div className='flex flex-row ml-10 justify-start justify-items-center'>
               {listCast}

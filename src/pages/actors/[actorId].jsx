@@ -42,7 +42,7 @@ function ActorInfo({ actor, credits, allActors }) {
     }, []);
 
     const moviesIn = (topMovies)? topMovies.map((movie) => (
-    <div key={movie.id} className="hover:text-slate-400 ml-5 mr-3 mt-8 p-2 text-center border-2 border-grey drop-shadow-xl rounded-lg bg-stone-200 min-w-[165px] min-h-[290px] max-w-[170px] transition ease-in-out delay-80 hover:-translate-y-1 hover:scale-110 duration-300">
+    <div key={movie.id} className="text-black hover:text-slate-400 ml-5 mr-3 mt-8 p-2 text-center border-2 border-grey drop-shadow-xl rounded-lg bg-stone-200 min-w-[165px] min-h-[290px] max-w-[170px] transition ease-in-out delay-80 hover:-translate-y-1 hover:scale-110 duration-300">
       <Link href={`/movies/${movie.id}`}><img className="rounded-2xl h-[224px] w-[145px] m-auto" src={`${ImageUrl}${movie.poster_path}`} alt={movie.title} /></Link>
       <div className='break-normal'>{movie.title} ({movie.release_date.substring(0,4)})</div>
     </div>
@@ -50,9 +50,9 @@ function ActorInfo({ actor, credits, allActors }) {
 
 //"bg-gradient-to-r from-cyan-500 to-red-500"
   return (
-    <div className='to-red-500 pb-10'>
+    <div className='to-red-500 pb-10 bg-gradient-to-r from-yellow-600 to-teal-950 text-white'>
       <div className="flex flex-row justify-start">  
-        <img src={actorPic} alt={actor.name} className='border-2 border-grey drop-shadow-xl ml-10 rounded-xl mt-7 h-ma  box-content w-[450px] h-[680px]' />
+        <img src={actorPic} alt={actor.name} className='border-2 border-grey drop-shadow-xl ml-10 rounded-xl mt-7 h-ma  box-content w-[450px] h-[680px] ' />
         <div class='mt-10'>
           <h2 className='text-4xl font-bold ml-14'>{actorName}</h2>
           <div className="text-2xl ml-14 mt-3"><b>Gender:</b> {actorGender}</div>
