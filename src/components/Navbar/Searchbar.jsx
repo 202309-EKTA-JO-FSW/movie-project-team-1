@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react'
 import { options } from '../../ApiInfo';
 import Link from 'next/link';
 import { ImageUrl } from '../../ApiInfo';
+import { useRouter } from 'next/router'
 
 function SearchBar() {
     const [searchInput, setSearchInput] = useState('');
     const [movies, setMovies] = useState([]);
     const [actors, setActors] = useState([]);
+    const router = useRouter()
 
     useEffect(() => {
         if (searchInput !== '') {
@@ -21,14 +23,14 @@ function SearchBar() {
         }
       }, [searchInput]);
 
-    function handleSearchChange(event) {
-        setSearchInput(event.target.value);
+    useEffect(() => {
+        setSearchInput('');
         setMovies([]);
         setActors([]);
-    }
+    }, [router.asPath])
 
-    function handleClick() {
-        setSearchInput('');
+    function handleSearchChange(event) {
+        setSearchInput(event.target.value);
         setMovies([]);
         setActors([]);
     }
@@ -40,12 +42,12 @@ function SearchBar() {
                 <div className='absolute bg-slate-200 top-22  w-3/12 p-3 rounded-lg text-center z-20'>
                 {movies.length !== 0 ? 
                     <div>
-                        {movies.map(movie => <div key={movie.id} className='p-1 hover:bg-slate-100'><Link href={`/movies/${encodeURIComponent(movie.id)}`} className='flex gap-x-1 items-center' onClick={handleClick}><img src={`${ImageUrl}${movie.poster_path}`} width={60} height={60} />{movie.title}</Link></div>)}
+                        {movies.map(movie => <div key={movie.id} className='p-1 hover:bg-slate-100'><Link href={`/movies/${encodeURIComponent(movie.id)}`} className='flex gap-x-1 items-center'><img src={`${ImageUrl}${movie.poster_path}`} width={60} height={60} />{movie.title}</Link></div>)}
                     </div>
                 : null} 
                 {actors.length !== 0 ? 
                     <div>
-                        {actors.map(actor => <div key={actor.id} className='p-1 hover:bg-slate-100'><Link href={`/actors/${encodeURIComponent(actor.id)}`} className='flex gap-x-3 items-center' onClick={handleClick}><img src={`${ImageUrl}${actor.profile_path}`} width={60} height={60} />{actor.name}</Link></div>)}
+                        {actors.map(actor => <div key={actor.id} className='p-1 hover:bg-slate-100'><Link href={`/actors/${encodeURIComponent(actor.id)}`} className='flex gap-x-3 items-center'><img src={`${ImageUrl}${actor.profile_path}`} width={60} height={60} />{actor.name}</Link></div>)}
                     </div>
                 : null} 
                 </div>
