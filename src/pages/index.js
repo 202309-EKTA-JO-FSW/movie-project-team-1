@@ -11,17 +11,17 @@ export default function Home({nowPlayingMovies,popularMovies,topratedmoviesMovie
             pathname:  '/movies',
             query: { MovieCategory:'popular' },
           }}  key={'popular_list'}> 
-  <h2 className='text-yellow-600 text-lg font-bold text-center hover:text-white'>Popular Movies</h2></Link>
+  <h2 className='text-yellow-300 text-lg font-bold text-center hover:text-white'>Popular Movies</h2></Link>
   </div>
       <ul className="flex flex-wrap justify-center">
           {popularMovies.map((movie) => (
-            <li key={popularMovies.id} className="w-1/6 p-4">
+            <li key={popularMovies.id} className=" p-2 my-3 transition ease-in-out delay-80 hover:-translate-y-1 hover:scale-110 duration-300">
               <Link href={`/movies/${movie.id}`}>
-                <div className="bg-white border rounded-lg shadow-md p-4">
+                <div className="bg-stone-200 border rounded-lg shadow-md p-2 my-2">
                   <img
                     src={`${ImageUrl}${movie.poster_path}`}
                     alt={movie.title}
-                    className="w-full h-72 object-cover"
+                    className="w-full h-72 object-cover rounded-lg"
                   />
                 </div>
               </Link>
@@ -29,23 +29,23 @@ export default function Home({nowPlayingMovies,popularMovies,topratedmoviesMovie
           ))}
         </ul>
 
-        <div class="bg-teal-900 justify-between py-3 px-6 mx-6 rounded-xl">
+        <div className="bg-teal-900 justify-between py-3 px-6 mx-6 rounded-xl">
         <Link  href={{
             pathname: '/movies',
             query: { MovieCategory:'top_rated' },
           }}  key={'top_rated_list'}> 
-          <h2 className='text-yellow-600 text-lg font-bold text-center hover:text-white'>Top Rated Movies</h2>
+          <h2 className='text-yellow-300 text-lg font-bold text-center hover:text-white'>Top Rated Movies</h2>
           </Link>
   </div>
       <ul className="flex flex-wrap justify-center">
           {topratedmoviesMovies.map((movie) => (
-            <li key={topratedmoviesMovies.id} className="w-1/6 p-4">
+            <li key={topratedmoviesMovies.id} className=" p-2 my-3 transition ease-in-out delay-80 hover:-translate-y-1 hover:scale-110 duration-300">
               <Link href={`/movies/${movie.id}`}>
-                <div className="bg-white border rounded-lg shadow-md p-4">
+                <div className="bg-stone-200 border rounded-lg shadow-md p-2 my-2">
                   <img
                     src={`${ImageUrl}${movie.poster_path}`}
                     alt={movie.title}
-                    className="w-full h-72 object-cover"
+                    className="w-full h-72 object-cover rounded-lg"
                   />
                 </div>
               </Link>
@@ -56,18 +56,18 @@ export default function Home({nowPlayingMovies,popularMovies,topratedmoviesMovie
         <Link  href={{
             pathname: '/movies',
             query: { MovieCategory:'now_playing' },
-          }}  key={'now_playing_list'}>  <h2 className='text-yellow-600 text-lg font-bold text-center hover:text-white'>Now Playing Movies</h2>
+          }}  key={'now_playing_list'}>  <h2 className='text-yellow-300 text-lg font-bold text-center hover:text-white'>Now Playing Movies</h2>
           </Link>
   </div>
       <ul className="flex flex-wrap justify-center">
           {nowPlayingMovies.map((movie) => (
-            <li key={nowPlayingMovies.id} className="w-1/6 p-4">
+            <li key={nowPlayingMovies.id} className=" p-2 my-3 transition ease-in-out delay-80 hover:-translate-y-1 hover:scale-110 duration-300">
               <Link href={`/movies/${movie.id}`}>
-                <div className="bg-white border rounded-lg shadow-md p-4">
+                <div className="bg-stone-200 border rounded-lg shadow-md p-2 my-2">
                   <img
                     src={`${ImageUrl}${movie.poster_path}`}
                     alt={movie.title}
-                    className="w-full h-72 object-cover"
+                    className="w-full h-72 object-cover rounded-lg"
                   />
                 </div>
               </Link>

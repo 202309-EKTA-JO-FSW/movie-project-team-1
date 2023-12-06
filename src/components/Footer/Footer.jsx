@@ -8,19 +8,19 @@ function Footer(){
             height={36} className='float left p-2' />
         <div className="m-10">
           <div>
-            <div className="text-2xl"><b>Home</b></div>
-            <div className="text-l hover:underline hover:underline-offset-4"><Link href="/"><p>Home Page</p></Link></div>
+            <div className="text-2xl text-yellow-300"><b>Home</b></div>
+            <div className="text-l hover:underline hover:underline-offset-4 "><Link href="/"><p>Home Page</p></Link></div>
           </div>
           <div className="flex flex-row">
             <div className="mr-5">
-                <div className="text-2xl mt-5"><b>Movies</b></div>
+                <div className="text-2xl mt-5 text-yellow-300"><b>Movies</b></div>
                 <Link href={`/movies?MovieCategory=now_playing`}><p className="text-l hover:underline hover:underline-offset-4">Now playing Movies</p></Link>
                 <Link href={`/movies?MovieCategory=top_rated`}><p className="text-l hover:underline hover:underline-offset-4">Top Rated Movies</p></Link>
                 <Link href={`/movies?MovieCategory=upcoming`}><p className="text-l hover:underline hover:underline-offset-4">Upcoming Movies</p></Link>
                 <Link href={`/movies?MovieCategory=popular`}><p className="text-l hover:underline hover:underline-offset-4">Popular Movies</p></Link>
             </div>
             <div>
-                <div className="text-2xl mt-5"><b>Actors</b></div>
+                <div className="text-2xl mt-5 text-yellow-300"><b>Actors</b></div>
                 <Link href={`/actors`}><p className="text-l hover:underline hover:underline-offset-4">Actors Page</p></Link>
             </div>
           </div>
