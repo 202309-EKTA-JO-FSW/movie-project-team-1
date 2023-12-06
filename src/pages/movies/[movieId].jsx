@@ -88,16 +88,16 @@ function movieInfo({ movie, cast, similar, video}) {
     //bg-gradient-to-r from-cyan-500 to-red-500
     return (
         <div className="">
-          <div className='flex mb-10 justify-start pb-10'>
+          <div className='flex  justify-start pb-10 bg-gradient-to-r from-teal-900 to-yellow-600'>
             
-            <img src={poster} alt="movie poster" className='border-2 border-grey drop-shadow-xl ml-10 rounded-xl mt-7 h-ma  box-content w-88 h-[510px]' />
+            <img src={poster} alt="movie poster" className=' border-2 border-grey drop-shadow-xl ml-10 rounded-xl mt-10 h-ma  box-content w-88 h-[510px] transition ease-in-out delay-80 hover:-translate-y-1 hover:scale-110 duration-300' />
             
             <div className='mt-10'>
-              <h2 className='text-4xl font-bold ml-14'>{name} ({movieYear}) </h2>
-              <span className='text-lg ml-14 mt-5'><b className='text-2xl'>Genre(s):</b> {genres}</span>
-              <p className='text-2xl ml-14 mt-3'><b>Release Date:</b> {release}</p>
-              <p className='text-2xl ml-14 mt-3'><b>Duration:</b> {hours !== 0? hours+"h": null}{minutes !== 0? minutes+"m": null}</p>
-              <p className='text-2xl text-2xl ml-14 mt-5'>
+              <h2 className='text-white text-4xl font-bold ml-14'>{name} ({movieYear}) </h2>
+              <span className='text-white text-lg ml-14 mt-5'><b className='text-2xl'>Genre(s):</b> {genres}</span>
+              <p className='text-white text-2xl ml-14 mt-3'><b>Release Date:</b> {release}</p>
+              <p className='text-white text-2xl ml-14 mt-3'><b>Duration:</b> {hours !== 0? hours+"h": null}{minutes !== 0? minutes+"m": null}</p>
+              <p className='text-white text-2xl text-2xl ml-14 mt-5'>
                 <b>Rating: </b>
                 <b><CircularProgressbar
                   value={rating} 
@@ -117,38 +117,38 @@ function movieInfo({ movie, cast, similar, video}) {
                 &nbsp;
                 ({votes} Rating{votes !== 1? "s":null})
               </p>
-              <div className='text-2xl ml-14 mt-2'>
+              <div className='text-white text-2xl ml-14 mt-2'>
                 <b>Language(s):</b>
                 {allLanguages}
               </div> 
-              <div className='text-l ml-14 mt-3'>
+              <div className='text-white text-l ml-14 mt-3'>
                 <b className='text-2xl'>Director(s):</b>
                 {listDir}
               </div>
-              <div className='text-l ml-14 mt-3 mr-28'>
+              <div className='text-white text-l ml-14 mt-3 mr-28'>
                   <h3 className='text-xl font-bold'>Overview</h3>
                   <ReadMoreReadLess text={overview} maxLength={250} movieName={name}/>
               </div>
             </div>
 
           </div>
-          <div className=''>
-            <h3 className='text-2xl font-bold ml-10 mb-3'>Cast</h3>
+          <div className='bg-teal-950'>
+            <h3 className='text-white text-3xl font-bold ml-10 mb-3'>Cast</h3>
             <div className='flex flex-row ml-10 justify-start justify-items-center'>
               {listCast}
             </div>
-            {offTrailer && <h3 className='text-2xl font-bold ml-10 mb-3 mt-5'>Trailer</h3>}
+            {offTrailer && <h3 className='text-white text-3xl font-bold ml-10 mb-3 mt-5'>Trailer</h3>}
             {offTrailer && <iframe className='place-content-center ml-14 rounded-xl w-[720px] h-[400px]' 
               src={`https://www.youtube.com/embed/${offTrailer}`} >
             </iframe>}
-            <h3 className='text-2xl font-bold ml-10 mb-3 mt-5'>Recommendations</h3>
+            <h3 className='text-white text-3xl font-bold ml-10 mb-3 mt-5'>Recommendations</h3>
             <div className='flex flex-row ml-10 justify-start justify-items-center'>
               {similarMovies}
             </div>
-            {companyName && <h3 className='text-2xl font-bold ml-10 mb-3 mt-5'>Production Company</h3>}
+            {companyName && <h3 className='text-white text-3xl font-bold ml-10 mb-3 mt-5'>Production Company</h3>}
             <div >
               {(!!companyImg) && <img src={`${ImageUrl}${companyImg}`} alt={companyName} className='ml-20' width={"200px"}/>}
-              <h3 className='pb-7 font-serif ml-20'><b>{companyName}</b></h3>
+              <h3 className='text-white pb-7 font-serif ml-20'><b>{companyName}</b></h3>
             </div>
             </div>
         </div>
