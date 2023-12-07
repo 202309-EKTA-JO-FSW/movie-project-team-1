@@ -34,20 +34,20 @@ function SearchBar() {
         setMovies([]);
         setActors([]);
     }
-
+    console.log(movies);
     return (
         <div className = 'm-7 float-left'>
-            <input type='text' value={searchInput} onChange={handleSearchChange} className='text-base' />
+            <input type='text' placeholder='Search...' value={searchInput} onChange={handleSearchChange} className='text-base rounded-lg w-[200px] h-[30px] text-teal-950 font-bold' />
             {movies.length !== 0 || actors.length !== 0 ? 
-                <div className='absolute bg-slate-200 top-22  w-3/12 p-3 rounded-lg text-center z-20'>
+                <div className='absolute bg-teal-900  top-22  w-3/12 p-3 rounded-lg text-center z-20 h-[510px] overflow-y-scroll '>
                 {movies.length !== 0 ? 
                     <div>
-                        {movies.map(movie => <div key={movie.id} className='p-1 hover:bg-slate-100'><Link href={`/movies/${encodeURIComponent(movie.id)}`} className='flex gap-x-1 items-center'><img src={`${ImageUrl}${movie.poster_path}`} width={60} height={60} />{movie.title}</Link></div>)}
+                        {movies.map(movie => <div key={movie.id} className='text-white font-bold p-1 hover:bg-yellow-600 rounded-lg'><Link href={`/movies/${encodeURIComponent(movie.id)}`} className='flex gap-x-1 items-center'><img src={`${ImageUrl}${movie.poster_path}`} width={60} height={60} />{movie.title} ({movie.release_date.substring(0,4)})</Link></div>)}
                     </div>
                 : null} 
                 {actors.length !== 0 ? 
                     <div>
-                        {actors.map(actor => <div key={actor.id} className='p-1 hover:bg-slate-100'><Link href={`/actors/${encodeURIComponent(actor.id)}`} className='flex gap-x-3 items-center'><img src={`${ImageUrl}${actor.profile_path}`} width={60} height={60} />{actor.name}</Link></div>)}
+                        {actors.map(actor => <div key={actor.id} className='text-white font-bold p-1 hover:bg-yellow-600 rounded-lg'><Link href={`/actors/${encodeURIComponent(actor.id)}`} className='flex gap-x-3 items-center'><img src={`${ImageUrl}${actor.profile_path}`} width={60} height={60} />{actor.name}</Link></div>)}
                     </div>
                 : null} 
                 </div>
