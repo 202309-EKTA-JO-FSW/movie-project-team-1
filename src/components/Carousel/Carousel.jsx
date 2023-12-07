@@ -9,19 +9,19 @@ function NextJsCarousel({upcomingMovies}) {
         <div> 
           <Carousel autoPlay> 
           {upcomingMovies.map((movie) => (
-            <div key={upcomingMovies.id}>
-              <Link href={`/movies/${movie.id}`}>
+            <Link href={`/movies/${movie.id}`}>
+            <div key={upcomingMovies.id} className=' my-2'>
                   <img
                     src={`${ImageUrl}${movie.backdrop_path}`}
-                    alt={movie.title} className="w-full"  style={{height:'500px'}}
+                    alt={movie.title} className="rounded-2xl relative max-w-[1000px] h-[600px]"  style={{height:'500px'}}
                   />
-                   <p className="legend">{movie.title}</p> 
-                
-              </Link>
+                   <p className="text-xl absolute -mt-16 z-50 bg-teal-950 py-1 text-yellow-300 text-bold px-20 left-[290px] rounded-3xl">{movie.title} ({movie.release_date.substring(0, 4)})</p> 
+                    
             </div>
+            </Link>
           ))}
         
-             
+ 
           </Carousel> 
         </div> 
     ); 
